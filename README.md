@@ -1,0 +1,1 @@
+# This project for Badalova's kori kursi
