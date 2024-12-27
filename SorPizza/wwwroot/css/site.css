@@ -1,0 +1,231 @@
+:root {
+    --primary-color: #FF4B3A;
+    --secondary-color: #FFA500;
+    --accent-color: #FFD700;
+    --text-color: #333333;
+    --background-color: #FFFFFF;
+    --footer-color: #2C3E50;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Главная секция */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/pizza-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
+/* Карточки пицц */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Размеры пицц */
+.sizes-section {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    margin: 1rem 0;
+}
+
+.form-check {
+    margin-bottom: 0.5rem;
+}
+
+/* Кнопка заказа */
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Секция О нас */
+.about-section {
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+}
+
+.about-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-section ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.about-section ul li:before {
+    content: '✓';
+    color: #ff4d4d;
+    position: absolute;
+    left: 0;
+}
+
+/* Контакты */
+.contact-section {
+    background-color: white;
+}
+
+.contact-section i {
+    color: #ff4d4d;
+    margin-right: 0.5rem;
+}
+
+/* Футер */
+.footer {
+    background-color: var(--footer-color);
+    color: var(--text-color);
+    padding: 1rem 0;
+    margin-top: 2rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: white;
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: #ff4d4d;
+}
+
+/* Форма заказа */
+.order-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.order-summary {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+/* Подтверждение заказа */
+.order-confirmation {
+    text-align: center;
+    padding: 2rem;
+}
+
+.order-details {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 1rem 0;
+}
+
+/* Стили для формы */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 75, 58, 0.25);
+    border-color: var(--primary-color);
+}
+
+.form-select {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+}
+
+/* Отступы для контейнера */
+.container {
+    padding-bottom: 3rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 50px 0;
+    }
+    
+    .card-img-top {
+        height: 150px;
+    }
+    
+    .about-section, .contact-section {
+        padding: 2rem 0;
+    }
+    
+    .container {
+        padding-bottom: 1rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: var(--background-color) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: var(--background-color) !important;
+}

@@ -1,0 +1,62 @@
+@model SorPizza.Models.Order
+
+<div class="container mt-4 mb-5">
+    <h2 class="mb-4">Оформление заказа</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Ваш заказ</h3>
+                    <div class="order-details mt-3">
+                        @foreach (var item in Model.OrderItems)
+                        {
+                            <h5>@item.Pizza?.Name</h5>
+                            <p class="mb-2">Размер:</p>
+                            <select class="form-select mb-3" name="OrderItems[0].SelectedSize">
+                                @foreach (var size in item.Pizza?.Sizes ?? new List<PizzaSize>())
+                                {
+                                    <option value="@size.Name">
+                                        @size.Name - @(item.Pizza!.Price + size.AdditionalPrice) сомони
+                                    </option>
+                                }
+                            </select>
+                            <p class="mb-2">Количество:</p>
+                            <input type="number" class="form-control mb-3" name="OrderItems[0].Quantity" 
+                                   value="@item.Quantity" min="1" max="10" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Контактная информация</h3>
+                    <form asp-action="Create" method="post" class="mt-3">
+                        <div class="mb-3">
+                            <label asp-for="CustomerName" class="form-label">Ваше имя</label>
+                            <input asp-for="CustomerName" class="form-control" required />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label">Номер телефона</label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="+992 ..." required />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label">Адрес доставки</label>
+                            <textarea asp-for="Address" class="form-control" rows="3" required></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Заказать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

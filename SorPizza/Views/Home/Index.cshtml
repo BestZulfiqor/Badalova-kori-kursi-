@@ -1,0 +1,91 @@
+@model IEnumerable<SorPizza.Models.Category>
+
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="hero-section text-center py-5 mb-4">
+    <h1 class="display-4">Добро пожаловать в SorPizza</h1>
+    <p class="lead">Лучшая пицца в Душанбе с доставкой</p>
+</div>
+
+<div class="menu-section">
+    @foreach (var category in Model)
+    {
+        <div class="category-section mb-5">
+            <h2 class="mb-4">@category.Name</h2>
+            <div class="row">
+                @foreach (var pizza in category.Pizzas.Where(p => p.IsAvailable))
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="@pizza.ImageUrl" class="card-img-top" alt="@pizza.Name">
+                            <div class="card-body">
+                                <h5 class="card-title">@pizza.Name</h5>
+                                <p class="card-text">@pizza.Description</p>
+                                <div class="sizes-section mb-3">
+                                    @foreach (var size in pizza.Sizes.OrderBy(s => s.SizeInCm))
+                                    {
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" 
+                                                   name="size_@pizza.Id" 
+                                                   id="size_@(pizza.Id)_@(size.Id)" 
+                                                   value="@size.Name">
+                                            <label class="form-check-label" for="size_@(pizza.Id)_@(size.Id)">
+                                                @size.Name - @(pizza.Price + size.AdditionalPrice) сомони
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                                <a href="@Url.Action("Create", "Order", new { pizzaId = pizza.Id })" 
+                                   class="btn btn-primary">
+                                    Заказать
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<div id="about" class="about-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">О нас</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Наша история</h4>
+                <p>SorPizza - это сеть пиццерий, которая уже много лет радует жителей Душанбе вкусной пиццей, приготовленной из свежих ингредиентов по оригинальным рецептам.</p>
+            </div>
+            <div class="col-md-6">
+                <h4>Наши преимущества</h4>
+                <ul>
+                    <li>Быстрая доставка</li>
+                    <li>Свежие ингредиенты</li>
+                    <li>Доступные цены</li>
+                    <li>Удобный заказ онлайн</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contacts" class="contact-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Контакты</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Адрес</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Душанбе, Таджикистан</p>
+                <p><i class="fas fa-phone"></i> +992 (00) 000-00-00</p>
+                <p><i class="fas fa-envelope"></i> info@sorpizza.tj</p>
+            </div>
+            <div class="col-md-6">
+                <h4>Время работы</h4>
+                <p>Понедельник - Воскресенье: 10:00 - 22:00</p>
+                <p>Работаем без выходных</p>
+            </div>
+        </div>
+    </div>
+</div>

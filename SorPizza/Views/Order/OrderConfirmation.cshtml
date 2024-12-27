@@ -1,0 +1,60 @@
+@model SorPizza.Models.Order
+
+@{
+    ViewData["Title"] = "Подтверждение заказа";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Заказ успешно оформлен!</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Номер заказа: #@Model.Id</h5>
+                    <p class="card-text">Спасибо за ваш заказ! Мы свяжемся с вами в ближайшее время.</p>
+
+                    <div class="order-details mt-4">
+                        <h6>Детали заказа:</h6>
+                        <ul class="list-unstyled">
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <li>
+                                    @item.Pizza?.Name - @item.SelectedSize
+                                    <br />
+                                    Количество: @item.Quantity x @item.Price сомони
+                                </li>
+                            }
+                        </ul>
+                        <div class="total-amount">
+                            <strong>Итого к оплате: @Model.TotalAmount сомони</strong>
+                        </div>
+                    </div>
+
+                    <div class="delivery-info mt-4">
+                        <h6>Информация о доставке:</h6>
+                        <p>
+                            <strong>Имя:</strong> @Model.CustomerName<br />
+                            <strong>Телефон:</strong> @Model.PhoneNumber<br />
+                            <strong>Адрес:</strong> @Model.Address
+                        </p>
+                        @if (!string.IsNullOrEmpty(Model.Comments))
+                        {
+                            <p>
+                                <strong>Комментарий к заказу:</strong><br />
+                                @Model.Comments
+                            </p>
+                        }
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                            Вернуться на главную
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
